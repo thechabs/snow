@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_processor">
+    <sys_processor action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <class_name/>
+        <description/>
+        <interactive>false</interactive>
+        <name>insertGamePlayer</name>
+        <parameters/>
+        <params_endpoint/>
+        <path>insert_game_player</path>
+        <path_endpoint>x_gametimenow_insert_game_player</path_endpoint>
+        <require_csrf>false</require_csrf>
+        <roles/>
+        <script><![CDATA[insertGamePlayer(g_request, g_processor);
+
+function insertGamePlayer(g_request, g_processor){
+	var playing = g_request.getParameter('playing');
+	var player = gs.getUserDisplayName();
+	
+	var gr = new GlideRecord('x_gametimenow_game_players');
+	gr.initialize();
+	gr.playing = playing;
+	gr.player = player;
+	gr.insert();
+	
+	g_processor.redirect("home.do");
+	
+}]]></script>
+        <sys_class_name>sys_processor</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2016-05-18 21:52:17</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>296dbad8b12312007f4415856332facf</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>insertGamePlayer</sys_name>
+        <sys_package display_value="GameTimeNow" source="x_gametimenow">241e6e18b12312007f4415856332fa37</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="GameTimeNow">241e6e18b12312007f4415856332fa37</sys_scope>
+        <sys_update_name>sys_processor_296dbad8b12312007f4415856332facf</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2016-05-18 21:52:17</sys_updated_on>
+        <type>script</type>
+    </sys_processor>
+</record_update>
